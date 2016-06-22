@@ -1,0 +1,15 @@
+.DS_Store
+*.pidb
+*.userprefs
+*.user
+*.suo
+_Resharper*
+obj
+bin
+test-results
+TestResults
+*.nupkg
+/packages
+/HttpLibrary.Net.sln.ide
+/.vs
+/nuget/HttpLibrary.Net*
