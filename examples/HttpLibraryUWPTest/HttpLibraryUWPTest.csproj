@@ -131,11 +131,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HttpLibrary.Platform.UWP\HttpLibrary.Platform.UWP.csproj">
+    <ProjectReference Include="..\..\src\HttpLibrary.Platform.UWP\HttpLibrary.Platform.UWP.csproj">
       <Project>{23928727-ee58-4e1e-9efe-66ef2e1b804d}</Project>
       <Name>HttpLibrary.Platform.UWP</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HttpLibrary.Net\HttpLibrary.Net.csproj">
+    <ProjectReference Include="..\..\src\HttpLibrary.Net\HttpLibrary.Net.csproj">
       <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
       <Name>HttpLibrary.Net</Name>
     </ProjectReference>
