@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Author: Wayne Gu
+// Created: 2016-6-20 14:00
+// Project: HttpLibrary.Net
+// License: MIT license
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +15,7 @@ using System.Diagnostics;
 
 namespace HttpLibrary.Http
 {
-    public class HttpProgressEventArgs : EventArgs
+    class HttpProgressEventArgs : EventArgs
     {
         public long Offset { get; private set; }
         public long Total { get; private set; }
@@ -24,7 +28,7 @@ namespace HttpLibrary.Http
         }
     }
 
-    public class HttpReadyEventArgs : EventArgs
+    class HttpReadyEventArgs : EventArgs
     {
         public ReadyState State { get; private set; }
 
@@ -34,6 +38,10 @@ namespace HttpLibrary.Http
         }
     }
 
+
+    /// <summary>
+    /// Low level http request
+    /// </summary>
     public class HttpRequest
     {
         private static Random r = new Random(DateTime.Now.Millisecond);
@@ -123,7 +131,7 @@ namespace HttpLibrary.Http
             set;
         }
 
-        public Exception Exception
+        internal Exception Exception
         {
             get;
             set;
@@ -247,6 +255,9 @@ namespace HttpLibrary.Http
         #endregion
     }
 
+    /// <summary>
+    /// Low level http response
+    /// </summary>
     public class HttpResponse : IDisposable
     {
         internal int ResponseId
@@ -265,19 +276,24 @@ namespace HttpLibrary.Http
             private set;
         }
 
-        //private string streamKey;
+        /// <summary>
+        /// Response stream
+        /// </summary>
         public Stream ResponseStream
         {
             get;
             protected set;
         }
 
-        public Exception Exception
+        internal Exception Exception
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Http status code
+        /// </summary>
         public HttpStatusCode StatusCode
         {
             get;
@@ -297,6 +313,9 @@ namespace HttpLibrary.Http
         {
         }
 
+        /// <summary>
+        /// Release reponse.
+        /// </summary>
         public void Dispose()
         {
             if (OriginalResponse != null)

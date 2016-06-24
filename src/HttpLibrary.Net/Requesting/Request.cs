@@ -1,4 +1,9 @@
-﻿using System;
+﻿// Author: Wayne Gu
+// Created: 2016-6-20 14:00
+// Project: HttpLibrary.Net
+// License: MIT license
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +15,9 @@ using System.IO;
 
 namespace HttpLibrary.Requesting
 {
+    /// <summary>
+    /// Request or response progress event arguments
+    /// </summary>
     public class ProgressEventArgs : EventArgs
     {
         public ProgressEventArgs(long sended, long total, int latestSize)
@@ -19,13 +27,30 @@ namespace HttpLibrary.Requesting
             LatestSize = latestSize;
         }
 
+        /// <summary>
+        /// Sent bytes
+        /// </summary>
         public long Sended { get; private set; }
+
+        /// <summary>
+        /// Total bytes 
+        /// </summary>
         public long Total { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public int LatestSize { get; private set; }
     }
 
+    /// <summary>
+    /// Request or response state event arguments
+    /// </summary>
     public class ReadyEventArgs : EventArgs
     {
+        /// <summary>
+        /// Request or response state
+        /// </summary>
         public ReadyState State { get; private set; }
 
         public ReadyEventArgs(ReadyState state)
@@ -34,27 +59,59 @@ namespace HttpLibrary.Requesting
         }
     }
 
+    /// <summary>
+    /// Request priority, the higher priority request is, the faster it will be sent.
+    /// </summary>
     public enum RequestPriority { Realtime = 0, High, Normal, Low }
 
+    /// <summary>
+    /// Request base class.
+    /// </summary>
     public abstract class Request
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="priority">Request priority.</param>
         public Request(RequestPriority priority)
         {
             Id = GenerateId();
             Priority = priority;
         }
 
+        /// <summary>
+        /// Request Id.
+        /// </summary>
         public int Id { get; private set; }
 
+        /// <summary>
+        /// Request url.
+        /// </summary>
         public string Uri { get; protected set; }
 
+        /// <summary>
+        /// Request priority.
+        /// </summary>
         public RequestPriority Priority { get; private set; }
+
+        /// <summary>
+        /// Response.
+        /// </summary>
         public Response Response { get; protected set; }
 
-        public List<KeyValuePair<string, string>> requestHeaders;
+        /// <summary>
+        /// Request headers
+        /// </summary>
+        protected List<KeyValuePair<string, string>> requestHeaders;
 
+        /// <summary>
+        /// Request send progress event. It's used when request contains body.
+        /// </summary>
         public event EventHandler<ProgressEventArgs> OnProgressing;
 
+        /// <summary>
+        /// Low level http request.
+        /// </summary>
         protected internal HttpRequest HttpRequest { get; set; }
         internal void PrepareLowLevelRequest()
         {
@@ -104,7 +161,10 @@ namespace HttpLibrary.Requesting
             HttpRequest = null;
         }
 
-        //Encode request into low level request
+        /// <summary>
+        /// Create low level request and set its properties.
+        /// Override it if you want to use your own way to create HttpRequest.
+        /// </summary>
         protected virtual void Encode()
         {
             HttpRequest = new HttpRequest(Uri);
@@ -114,6 +174,10 @@ namespace HttpLibrary.Requesting
             }
         }
 
+        /// <summary>
+        /// Create reponse.
+        /// Override it since usually you have you own reponse type.
+        /// </summary>
         protected virtual void CreateResponse()
         {
             Response = new Response();
@@ -130,22 +194,41 @@ namespace HttpLibrary.Requesting
         }
     }
 
+    /// <summary>
+    /// Reponse base class.
+    /// </summary>
     public class Response
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Response()
         {
             IsSucceeded = false;
         }
 
+        /// <summary>
+        /// Reponse Id, equals to request Id.
+        /// </summary>
         public int Id { get; internal set; }
 
+        /// <summary>
+        /// Reponse exception
+        /// </summary>
         public Exception Exception
         {
             get;
             internal set;
         }
+
+        /// <summary>
+        /// Indicate if reponse is succeeded.
+        /// </summary>
         public bool IsSucceeded { get; internal set; }
 
+        /// <summary>
+        /// Repoonse stream.
+        /// </summary>
         protected Stream ResponseStream
         {
             get
@@ -154,12 +237,18 @@ namespace HttpLibrary.Requesting
             }
         }
 
+        /// <summary>
+        /// Object context
+        /// </summary>
         public object Context
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Clean reponse sream
+        /// </summary>
         protected void CleanResponseStream()
         {
             if (HttpResponse != null)
@@ -168,8 +257,19 @@ namespace HttpLibrary.Requesting
             }
         }
 
+        /// <summary>
+        /// Low level http reponse
+        /// </summary>
         protected internal HttpResponse HttpResponse { get; private set; }
+
+        /// <summary>
+        /// Trigger when reponse is ready.
+        /// </summary>
         public event EventHandler<ReadyEventArgs> OnReady;
+        /// <summary>
+        /// Trigger when response is in progress.
+        /// It's used when response contains body.
+        /// </summary>
         public event EventHandler<ProgressEventArgs> OnProgressing;
 
         internal void SetException(Exception ex)
@@ -238,12 +338,23 @@ namespace HttpLibrary.Requesting
             }
         }
 
-        //Decode low level response to response
+        /// <summary>
+        /// Decode low level http response.
+        /// Override it to decode http response and assign to your response object. 
+        /// </summary>
         protected virtual void Decode() { }
 
-        //Get not get repsonse but expcetion
+        /// <summary>
+        /// Decode low level http response when it's failed.
+        /// Override it to decode http error response and assign to your response object.
+        /// </summary>
         protected virtual void ExplainException() { }
 
+        /// <summary>
+        /// Get response header
+        /// </summary>
+        /// <param name="header">header name</param>
+        /// <returns></returns>
         protected string GetResponseHeader(string header)
         {
             return HttpResponse.OriginalResponse.Headers[header];

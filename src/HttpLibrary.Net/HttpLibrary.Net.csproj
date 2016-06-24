@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Common\Definitions.cs" />
-    <Compile Include="Common\Exceptions.cs" />
+    <Compile Include="Common\EventArgs.cs" />
     <Compile Include="Common\LibExtension.cs" />
     <Compile Include="Common\DiagnoseHelper.cs" />
     <Compile Include="Common\HttpConst.cs" />

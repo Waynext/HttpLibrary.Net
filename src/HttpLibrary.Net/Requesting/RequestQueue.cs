@@ -1,4 +1,9 @@
-﻿using System;
+﻿// Author: Wayne Gu
+// Created: 2016-6-20 14:00
+// Project: HttpLibrary.Net
+// License: MIT license
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +17,11 @@ using HttpLibrary.Interop;
 
 namespace HttpLibrary.Requesting
 {
+    /// <summary>
+    /// RequestQueue is core of HttpLibrary. It sends requests in the request queue.
+    /// Request in request queue is prioritized, which means request with high priority will be sent first.
+    /// RequestQueue is multithread safe, you can add requests from diffent threads.
+    /// </summary>
     public class RequestQueue : IDisposable
     {
         private Task contextTask;
@@ -20,8 +30,26 @@ namespace HttpLibrary.Requesting
         private const int QueueCount = (int)RequestPriority.Low + 1;
         
         private List<Request>[] msgQueues;
-        private const int parallelRealTime = 2;
-        private const int parallelOther = 2;
+
+        /// <summary>
+        /// Number of realtime requests can be sent parallelly.
+        /// Default value is 2.
+        /// </summary>
+        public int ParallelRealTime
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Number of non-realtime requests can be sent parallelly.
+        /// Default value is 2.
+        /// </summary>
+        public int ParallelOther
+        {
+            get;
+            private set;
+        }
 
         private object cacheLocker = new object();
 
@@ -33,8 +61,15 @@ namespace HttpLibrary.Requesting
 
         private HttpLayer httpLayer;
 
+        /// <summary>
+        /// Trigger when proxy credential is required 
+        /// </summary>
         public event EventHandler<ProxyAuthorizationRequiredEventArgs> ProxyAuthRequired;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="httpLibPlatform">HttpLibraryPlatform interface</param>
         public RequestQueue(IHttpLibraryPlatform httpLibPlatform)
         {
             InitMsgQueues();
@@ -52,6 +87,10 @@ namespace HttpLibrary.Requesting
             //contextThread.Start();
         }
 
+        /// <summary>
+        /// Add request into request queue
+        /// </summary>
+        /// <param name="request">request</param>
         public void AddRequest(Request request)
         {
             DiagnoseHelper.CheckArgument(request, "request");
@@ -68,6 +107,10 @@ namespace HttpLibrary.Requesting
             cacheChangedNotifier.Set();
         }
 
+        /// <summary>
+        /// Cancel request
+        /// </summary>
+        /// <param name="request"></param>
         public void CancelRequest(Request request)
         {
             DiagnoseHelper.CheckArgument(request, "request");
@@ -79,6 +122,11 @@ namespace HttpLibrary.Requesting
             cacheChangedNotifier.Set();
         }
 
+        /// <summary>
+        /// Send request in Async mode
+        /// </summary>
+        /// <param name="request">request</param>
+        /// <returns>Task</returns>
         public Task SendRequestAsync(Request request)
         {
             AddRequest(request);
@@ -98,11 +146,19 @@ namespace HttpLibrary.Requesting
             
         }
 
+        /// <summary>
+        /// Set proxy credential
+        /// </summary>
+        /// <param name="userName">User name</param>
+        /// <param name="password">Password</param>
         public void SetProxyAuth(string userName, string password)
         {
             httpLayer.SetProxy(userName, password);
         }
 
+        /// <summary>
+        /// Release related resource
+        /// </summary>
         public void Dispose()
         {
             stopNotifier.Set();
@@ -112,6 +168,7 @@ namespace HttpLibrary.Requesting
 
         private void InitMsgQueues()
         {
+            ParallelRealTime = ParallelOther = 2;
             msgQueues = new List<Request>[QueueCount];
             for (int i = 0; i < QueueCount; i++)
             {
@@ -248,7 +305,7 @@ namespace HttpLibrary.Requesting
 
         private int GetParallelCount(RequestPriority priority)
         {
-            return priority == RequestPriority.Realtime ? parallelRealTime : parallelOther;
+            return priority == RequestPriority.Realtime ? ParallelRealTime : ParallelOther;
         }
 
         private int GetSendingRequestCount(RequestPriority priority)
@@ -269,7 +326,7 @@ namespace HttpLibrary.Requesting
             
             foreach (var r in pendingQueue)
             {
-                if (sendingCount >= parallelRealTime)
+                if (sendingCount >= ParallelRealTime)
                     break;
 
                 sendingCount++;
@@ -304,7 +361,7 @@ namespace HttpLibrary.Requesting
 
             foreach (var r in pendingQueueHigh)
             {
-                if (sendingCount >= parallelOther)
+                if (sendingCount >= ParallelOther)
                     return;
 
                 sendingCount++;
@@ -314,7 +371,7 @@ namespace HttpLibrary.Requesting
 
             foreach (var r in pendingQueueNormal)
             {
-                if (sendingCount >= parallelOther)
+                if (sendingCount >= ParallelOther)
                     return;
 
                 sendingCount++;
@@ -324,7 +381,7 @@ namespace HttpLibrary.Requesting
 
             foreach (var r in pendingQueueLow)
             {
-                if (sendingCount >= parallelOther)
+                if (sendingCount >= ParallelOther)
                     return;
 
                 sendingCount++;

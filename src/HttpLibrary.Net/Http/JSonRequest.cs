@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Author: Wayne Gu
+// Created: 2016-6-20 14:00
+// Project: HttpLibrary.Net
+// License: MIT license
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +16,9 @@ using System.Diagnostics;
 
 namespace HttpLibrary.Http
 {
+    /// <summary>
+    /// Http request which contains json body  
+    /// </summary>
     public class JSonRequest : HttpRequest
     {
         public JSonRequest(string uri, JObject jObject, string method = HttpConst.HttpMethod_Post)
@@ -51,7 +58,10 @@ namespace HttpLibrary.Http
         public string ContentType { get; set; }
     }
 
-    class JSonResponse : HttpResponse
+    /// <summary>
+    /// Http response which contains json body  
+    /// </summary>
+    public class JSonResponse : HttpResponse
     {
         public JSonResponse(HttpWebResponse response, int requestId)
             : base(response, requestId)
@@ -59,6 +69,9 @@ namespace HttpLibrary.Http
             //DeseralizeFromStream();
         }
 
+        /// <summary>
+        /// Json body
+        /// </summary>
         public JObject Object
         {
             get;
