@@ -214,28 +214,35 @@ namespace HttpLibrary.Requesting
 
         private void ReuqestQueueProcedure()
         {
-            WaitHandle[] waiters = new WaitHandle[] { stopNotifier, cacheChangedNotifier };
-            int waiterIndex = -1;
-            while (waiterIndex != 0)
+            try
             {
-                lock (cacheLocker)
+                WaitHandle[] waiters = new WaitHandle[] { stopNotifier, cacheChangedNotifier };
+                int waiterIndex = -1;
+                while (waiterIndex != 0)
                 {
-                    _AddRequsts(addedCache);
-                    addedCache.Clear();
+                    lock (cacheLocker)
+                    {
+                        _AddRequsts(addedCache);
+                        addedCache.Clear();
 
-                    _CancelRequests(cancelledCache);
-                    cancelledCache.Clear();
+                        _CancelRequests(cancelledCache);
+                        cancelledCache.Clear();
 
-                    _ResponseRequests(responsedCache);
-                    responsedCache.Clear();
+                        _ResponseRequests(responsedCache);
+                        responsedCache.Clear();
+                    }
+
+                    if (!SendRealTimeRequests())
+                    {
+                        SendOtherRequest();
+                    }
+
+                    waiterIndex = WaitHandle.WaitAny(waiters);
                 }
-
-                if (!SendRealTimeRequests())
-                {
-                    SendOtherRequest();
-                }
-
-                waiterIndex = WaitHandle.WaitAny(waiters);
+            }catch(Exception ex)
+            {
+                Debug.WriteLine("Fatal: ReuqestQueueProcedure task crashed!");
+                Debug.WriteLine(ex.ToString());
             }
         }
 

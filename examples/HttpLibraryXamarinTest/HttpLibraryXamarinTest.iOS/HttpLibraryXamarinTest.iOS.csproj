@@ -88,6 +88,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="HttpLibrarySettings.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -138,6 +139,16 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\HttpLibrary.Net\HttpLibrary.Net.csproj">
+      <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
+      <Name>HttpLibrary.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\HttpLibrary.Platform.iOS\HttpLibrary.Platform.iOS.csproj">
+      <Project>{ea2e3b9a-ed28-4619-813b-88a4a21ac98c}</Project>
+      <Name>HttpLibrary.Platform.iOS</Name>
+      <IsAppExtension>false</IsAppExtension>
+      <IsWatchApp>false</IsWatchApp>
+    </ProjectReference>
     <ProjectReference Include="..\HttpLibraryXamarinTest\HttpLibraryXamarinTest.csproj">
       <Project>{a9497183-167d-46dd-91f7-35ee313678c5}</Project>
       <Name>HttpLibraryXamarinTest</Name>

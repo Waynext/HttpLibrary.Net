@@ -14,6 +14,7 @@ namespace HttpLibraryXamarinTest.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            System.Diagnostics.Trace.WriteLine(Build.Model);
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);

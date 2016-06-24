@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HttpLibrary.Platform.UWP
+namespace HttpLibrary.Platform.iOS
 {
-    public class HttpLibraryPlatformUWP : IHttpLibraryPlatform
+    public class HttpLibraryPlatformiOS : IHttpLibraryPlatform
     {
-        private DeviceInfoUWP devInfo = new DeviceInfoUWP();
+        private DeviceInfoiOS devInfo = new DeviceInfoiOS();
         public IDeviceInfo DeviceInfo
         {
             get
@@ -18,7 +18,7 @@ namespace HttpLibrary.Platform.UWP
             }
         }
 
-        private TimerUWP timer = new TimerUWP();
+        private TimeriOS timer = new TimeriOS();
         public ITimer Timer
         {
             get
@@ -27,11 +27,13 @@ namespace HttpLibrary.Platform.UWP
             }
         }
 
+        private HttpSettingsiOS httpSettings = new HttpSettingsiOS();
+
         public IHttpSettings HttpSettings
         {
             get
             {
-                return null;
+                return httpSettings;
             }
         }
     }

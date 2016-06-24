@@ -96,6 +96,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HttpLibrarySettings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -128,6 +129,14 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\HttpLibrary.Net\HttpLibrary.Net.csproj">
+      <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
+      <Name>HttpLibrary.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\HttpLibrary.Platform.UWP\HttpLibrary.Platform.UWP.csproj">
+      <Project>{23928727-ee58-4e1e-9efe-66ef2e1b804d}</Project>
+      <Name>HttpLibrary.Platform.UWP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HttpLibraryXamarinTest\HttpLibraryXamarinTest.csproj">
       <Project>{a9497183-167d-46dd-91f7-35ee313678c5}</Project>
       <Name>HttpLibraryXamarinTest</Name>

@@ -865,7 +865,10 @@ namespace HttpLibrary.Http
                 Debug.WriteLine("UserAgent: " + userAgent);
             }
 
-            httpRequest.Headers[HttpRequestHeader.UserAgent] = userAgent;
+            if (httpLibPlatform.HttpSettings == null)
+                httpRequest.Headers[HttpRequestHeader.UserAgent] = userAgent;
+            else
+                httpLibPlatform.HttpSettings.SetRequestUserAgent(httpRequest, userAgent);
         }
 
         public static string LogRequetId(int reqId)

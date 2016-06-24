@@ -26,6 +26,8 @@ namespace HttpLibraryXamarinTest.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::HttpLibrary.Platform.Android.Resource.String.ApplicationName = global::HttpLibraryXamarinTest.Droid.Resource.String.ApplicationName;
+			global::HttpLibrary.Platform.Android.Resource.String.Hello = global::HttpLibraryXamarinTest.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Resource.Animation.abc_fade_in = global::HttpLibraryXamarinTest.Droid.Resource.Animation.abc_fade_in;
 			global::Xamarin.Forms.Platform.Resource.Animation.abc_fade_out = global::HttpLibraryXamarinTest.Droid.Resource.Animation.abc_fade_out;
 			global::Xamarin.Forms.Platform.Resource.Animation.abc_grow_fade_in_from_bottom = global::HttpLibraryXamarinTest.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;

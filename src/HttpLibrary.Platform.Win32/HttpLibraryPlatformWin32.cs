@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HttpLibrary.Platform.UWP
+namespace HttpLibrary.Platform.Win32
 {
-    public class HttpLibraryPlatformUWP : IHttpLibraryPlatform
+    public class HttpLibraryPlatformWin32 : IHttpLibraryPlatform
     {
-        private DeviceInfoUWP devInfo = new DeviceInfoUWP();
+        private DeviceInfoWin32 devInfo = new DeviceInfoWin32();
         public IDeviceInfo DeviceInfo
         {
             get
@@ -18,7 +18,7 @@ namespace HttpLibrary.Platform.UWP
             }
         }
 
-        private TimerUWP timer = new TimerUWP();
+        private TimerWin32 timer = new TimerWin32();
         public ITimer Timer
         {
             get
@@ -27,11 +27,12 @@ namespace HttpLibrary.Platform.UWP
             }
         }
 
+        private HttpSettingsWin32 httpSettings = new HttpSettingsWin32();
         public IHttpSettings HttpSettings
         {
             get
             {
-                return null;
+                return httpSettings;
             }
         }
     }

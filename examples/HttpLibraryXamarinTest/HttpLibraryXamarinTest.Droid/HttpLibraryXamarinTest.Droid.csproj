@@ -96,6 +96,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HttpLibrarySettings.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,10 +116,21 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\HttpLibrary.Net\HttpLibrary.Net.csproj">
+      <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
+      <Name>HttpLibrary.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\HttpLibrary.Platform.Android\HttpLibrary.Platform.Android.csproj">
+      <Project>{0968c421-81a1-4fc3-9235-c3e03e853e7c}</Project>
+      <Name>HttpLibrary.Platform.Android</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HttpLibraryXamarinTest\HttpLibraryXamarinTest.csproj">
       <Project>{a9497183-167d-46dd-91f7-35ee313678c5}</Project>
       <Name>HttpLibraryXamarinTest</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\strings.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\..\packages\Xamarin.Forms.2.0.0.6482\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\..\packages\Xamarin.Forms.2.0.0.6482\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

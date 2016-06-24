@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HttpLibraryXamarinTest.WebPage"
+             >
+  <ContentPage.Padding>
+    <OnPlatform x:TypeArguments="Thickness">
+      <OnPlatform.iOS>
+        0, 20, 0, 0
+      </OnPlatform.iOS>
+      <OnPlatform.Android>
+        0, 0, 0, 0
+      </OnPlatform.Android>
+      <OnPlatform.WinPhone>
+        0, 0, 0, 0
+      </OnPlatform.WinPhone>
+    </OnPlatform>
+  </ContentPage.Padding>
+  <Grid BackgroundColor="White">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="*"></RowDefinition>
+    </Grid.RowDefinitions>
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="Auto"></ColumnDefinition>
+      </Grid.ColumnDefinitions>
+      <Label Text="Url" VerticalOptions="Center" TextColor="Black" />
+      <Entry x:Name="textBoxUri" Text="http://192.168.82.121/About.html" VerticalOptions="Center" Grid.Column="1" TextColor="Black"/>
+      <Button x:Name="queryButton" Text="Query" Grid.Column="2" TextColor="Black"/>
+    </Grid>
+
+    <ScrollView Grid.Row="1">
+      <Label x:Name="webTextBlock" Text="Web content" LineBreakMode="WordWrap" TextColor="Black" />
+    </ScrollView>
+
+  </Grid>
+</ContentPage>

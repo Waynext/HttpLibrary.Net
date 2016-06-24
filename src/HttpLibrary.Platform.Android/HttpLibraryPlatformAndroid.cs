@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HttpLibrary.Platform.UWP
+namespace HttpLibrary.Platform.Android
 {
-    public class HttpLibraryPlatformUWP : IHttpLibraryPlatform
+    public class HttpLibraryPlatformAndroid : IHttpLibraryPlatform
     {
-        private DeviceInfoUWP devInfo = new DeviceInfoUWP();
+        private DeviceInfoAndroid devInfo = new DeviceInfoAndroid();
         public IDeviceInfo DeviceInfo
         {
             get
@@ -18,7 +18,7 @@ namespace HttpLibrary.Platform.UWP
             }
         }
 
-        private TimerUWP timer = new TimerUWP();
+        private TimerAndroid timer = new TimerAndroid();
         public ITimer Timer
         {
             get
@@ -27,11 +27,13 @@ namespace HttpLibrary.Platform.UWP
             }
         }
 
+        private HttpSettingsAndroid httpSettings = new HttpSettingsAndroid();
+
         public IHttpSettings HttpSettings
         {
             get
             {
-                return null;
+                return httpSettings;
             }
         }
     }

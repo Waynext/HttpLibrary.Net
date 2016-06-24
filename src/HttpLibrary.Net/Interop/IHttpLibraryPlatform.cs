@@ -17,5 +17,10 @@ namespace HttpLibrary.Interop
         {
             get;
         }
+
+        IHttpSettings HttpSettings
+        {
+            get;
+        }
     }
 }

@@ -6,7 +6,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <StackPanel Orientation="Vertical" Background="White">
+    <Grid Background="White">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -17,8 +22,14 @@
             <TextBox x:Name="textBoxUri" Text="http://192.168.82.121/About.html" VerticalAlignment="Center" Margin="0,0,10,0" Grid.Column="1" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
             <Button Content="Query" Click="OnClickQuery" Grid.Column="2"/>
         </Grid>
-        <TextBlock x:Name="webTextBlock" Text="Web content" ScrollViewer.HorizontalScrollBarVisibility="Visible" />
-    </StackPanel>
+
+        <ScrollViewer HorizontalScrollMode="Enabled" Grid.Row="1" VerticalScrollMode="Enabled">
+            <TextBlock x:Name="webTextBlock" Text="Web content" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
+        </ScrollViewer>
+        
+
+        
+    </Grid>
 
 
 </Page>
