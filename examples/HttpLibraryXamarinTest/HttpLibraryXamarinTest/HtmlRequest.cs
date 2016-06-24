@@ -39,10 +39,18 @@ namespace HttpLibraryXamarinTest
 
         protected override void Decode()
         {
-            ResponseStream.Seek(0, SeekOrigin.Begin);
-            using (var reader = new StreamReader(ResponseStream, Encoding.UTF8))
+            var jsonResponse = HttpResponse as JSonResponse;
+            if (jsonResponse == null)
             {
-                Html = reader.ReadToEnd();
+                ResponseStream.Seek(0, SeekOrigin.Begin);
+                using (var reader = new StreamReader(ResponseStream, Encoding.UTF8))
+                {
+                    Html = reader.ReadToEnd();
+                }
+            }
+            else
+            {
+                Html = jsonResponse.Object.ToString();
             }
         }
     }
