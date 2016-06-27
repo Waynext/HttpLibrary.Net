@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>HttpLibrary.Net.Core-PCL</id>
+        <version>0.0.1</version>
+        <title>HttpLibrary.Net PCL</title>
+        <authors>Wayne Gu</authors>
+        <owners>Wayne Gu</owners>
+        <licenseUrl>https://github.com/Waynext/HttpLibrary.Net/blob/master/license.md</licenseUrl>
+        <projectUrl>https://github.com/Waynext/HttpLibrary.Net</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>HttpLibrary.Net PCL is an open source, minimal library to allow .NET and Mono applications to access web resouce by http request and response.
+            By inheriting Request and Response classes, function can be implemented in unified way. Multithread access is supported. Request can be classify by priority.
+            This package is compatible with the following .net platforms: Xamarin.iOS (Classic), Xamarin.iOS (Unified), Xamarin.Android, Windows Phone 8.1, Windows Phone 8.0, Windows 8.1, Windows 8.0, Win32, Generic, PCL(net4+sl4+wp7+win8+monotouch+MonoAndroid)</description>
+        <summary>A .NET client library to access access web resouce by http request and response.</summary>
+        <releaseNotes>https://github.com/Waynext/HttpLibrary.Net/commits/</releaseNotes>
+        <tags>network http web request response ios android windows uwp xamarin monotouch monodroid win32 windowsphone wp8.1</tags>
+        <dependencies>
+        </dependencies>
+    </metadata>
+    <files>
+        <!-- PCL -->
+        <file src="HttpLibrary.Net\HttpLibrary.Net.dll" target="lib\portable-win8.1+net45+wp81+wpa81+MonoAndroid1+MonoTouch1\HttpLibrary.Net.dll" />
+    </files>
+</package>

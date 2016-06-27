@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>HttpLibrary.Net-PCL</id>
+        <version>0.0.1</version>
+        <title>HttpLibrary.Net PCL</title>
+        <authors>Wayne Gu</authors>
+        <owners>Wayne Gu</owners>
+        <licenseUrl>https://github.com/Waynext/HttpLibrary.Net/blob/master/license.md</licenseUrl>
+        <projectUrl>https://github.com/Waynext/HttpLibrary.Net</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>HttpLibrary.Net PCL is an open source, minimal library to allow .NET and Mono applications to access web resouce by http request and response.
+            By inheriting Request and Response classes, function can be implemented in unified way. Multithread access is supported. Request can be classify by priority.
+            This package is compatible with the following .net platforms: Xamarin.iOS (Classic), Xamarin.iOS (Unified), Xamarin.Android, Windows Phone 8.1, Windows Phone 8.0, Windows 8.1, Windows 8.0, Win32, Generic, PCL(net4+sl4+wp7+win8+monotouch+MonoAndroid)</description>
+        <summary>A .NET client library to access access web resouce by http request and response.</summary>
+        <releaseNotes>https://github.com/Waynext/HttpLibrary.Net/commits/</releaseNotes>
+        <tags>network http web request response ios android windows uwp xamarin monotouch monodroid win32 windowsphone wp8.1</tags>
+        <dependencies>
+            <group>
+		        <dependency id="HttpLibrary.Net.Core-PCL" version="0.0.1"/>
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <!-- Xamarin.iOS (Classic)-->
+        <file src="HttpLibrary.Platform.iOS\HttpLibrary.Platform.iOS.dll" target="lib\monotouch\HttpLibrary.Platform.iOS.dll" />
+
+        <!-- Xamarin.Android -->
+        <file src="HttpLibrary.Platform.Android\HttpLibrary.Platform.Android.dll" target="lib\MonoAndroid\HttpLibrary.Platform.Android.dll" />
+
+        <!-- Windows Phone & Windows 10 -->
+        <file src="HttpLibrary.Platform.UWP\HttpLibrary.Platform.UWP.dll" target="lib\portable-uap\HttpLibrary.Platform.UWP.dll" />
+
+		<!-- Windows Phone & Windows 8.1 -->
+        <file src="HttpLibrary.Platform.Win8.1\HttpLibrary.Platform.Win8.1.dll" target="lib\portable-win81+wpa81\HttpLibrary.Platform.Win8.1.dll" />
+		
+        <!-- Win32 -->
+        <file src="HttpLibrary.Platform.Win32\HttpLibrary.Platform.Win32.dll" target="lib\net4\HttpLibrary.Platform.Win32.dll" />
+
+        <!-- PCL -->
+        <file src="HttpLibrary.Net\_._" target="lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\_._" />
+    </files>
+</package>
