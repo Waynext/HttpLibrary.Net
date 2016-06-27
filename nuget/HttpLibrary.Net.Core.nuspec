@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>HttpLibrary.Net.Core-PCL</id>
-        <version>0.0.1</version>
+        <version>0.0.2</version>
         <title>HttpLibrary.Net PCL</title>
         <authors>Wayne Gu</authors>
         <owners>Wayne Gu</owners>
@@ -20,6 +20,6 @@
     </metadata>
     <files>
         <!-- PCL -->
-        <file src="HttpLibrary.Net\HttpLibrary.Net.dll" target="lib\portable-win8.1+net45+wp81+wpa81+MonoAndroid1+MonoTouch1\HttpLibrary.Net.dll" />
+        <file src="HttpLibrary.Net\HttpLibrary.Net.dll" target="lib\portable-win8.1+net45+wp81+wpa81+uap+MonoAndroid1+MonoTouch1\HttpLibrary.Net.dll" />
     </files>
 </package>
