@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("HttpLibrary.Platform.iOS")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("HttpLibrary.Net is a cross platform web access library")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("HttpLibrary.Platform.iOS")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCopyright("Copyright ©  Wayne Gu")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

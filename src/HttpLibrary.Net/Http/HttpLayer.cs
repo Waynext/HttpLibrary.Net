@@ -870,7 +870,9 @@ namespace HttpLibrary.Http
             }
 
             if (httpLibPlatform.HttpSettings == null)
+            {
                 httpRequest.Headers[HttpRequestHeader.UserAgent] = userAgent;
+            }
             else
                 httpLibPlatform.HttpSettings.SetRequestUserAgent(httpRequest, userAgent);
         }
