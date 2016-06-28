@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>HttpLibrary.Net-PCL</id>
-        <version>0.0.2</version>
+        <version>0.0.4</version>
         <title>HttpLibrary.Net PCL</title>
         <authors>Wayne Gu</authors>
         <owners>Wayne Gu</owners>
@@ -17,13 +17,13 @@
         <tags>network http web request response ios android windows uwp xamarin monotouch monodroid win32 windowsphone wp8.1</tags>
         <dependencies>
             <group>
-		        <dependency id="HttpLibrary.Net.Core-PCL" version="0.0.1"/>
+		        <dependency id="HttpLibrary.Net.Core-PCL" version="0.0.4"/>
             </group>
         </dependencies>
     </metadata>
     <files>
-        <!-- Xamarin.iOS (Classic)-->
-        <file src="HttpLibrary.Platform.iOS\HttpLibrary.Platform.iOS.dll" target="lib\monotouch\HttpLibrary.Platform.iOS.dll" />
+        <!-- Xamarin.iOS (Unified)-->
+        <file src="HttpLibrary.Platform.iOS\HttpLibrary.Platform.iOS.dll" target="lib\Xamarin.iOS10\HttpLibrary.Platform.iOS.dll" />
 
         <!-- Xamarin.Android -->
         <file src="HttpLibrary.Platform.Android\HttpLibrary.Platform.Android.dll" target="lib\MonoAndroid\HttpLibrary.Platform.Android.dll" />
@@ -38,6 +38,6 @@
         <file src="HttpLibrary.Platform.Win32\HttpLibrary.Platform.Win32.dll" target="lib\net45\HttpLibrary.Platform.Win32.dll" />
 
         <!-- PCL -->
-        <file src="HttpLibrary.Net\_._" target="lib\portable-win81+net45+wpa81+uap+MonoAndroid1+MonoTouch1\_._" />
+        <file src="HttpLibrary.Net\_._" target="lib\portable-net45+netcore45+wp8+wpa81+uap+MonoAndroid10+MonoTouch10+Xamarin.iOS10\_._" />
     </files>
 </package>

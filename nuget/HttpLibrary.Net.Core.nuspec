@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>HttpLibrary.Net.Core-PCL</id>
-        <version>0.0.2</version>
+        <version>0.0.4</version>
         <title>HttpLibrary.Net PCL</title>
         <authors>Wayne Gu</authors>
         <owners>Wayne Gu</owners>
@@ -16,10 +16,13 @@
         <releaseNotes>https://github.com/Waynext/HttpLibrary.Net/commits/</releaseNotes>
         <tags>network http web request response ios android windows uwp xamarin monotouch monodroid win32 windowsphone wp8.1</tags>
         <dependencies>
+			<group>
+		        <dependency id="Newtonsoft.Json" version="8.0.3"/>
+            </group>
         </dependencies>
     </metadata>
     <files>
         <!-- PCL -->
-        <file src="HttpLibrary.Net\HttpLibrary.Net.dll" target="lib\portable-win8.1+net45+wp81+wpa81+uap+MonoAndroid1+MonoTouch1\HttpLibrary.Net.dll" />
+        <file src="HttpLibrary.Net\HttpLibrary.Net.dll" target="lib\portable-net45+netcore45+wpa81+wp8+win8+uap+MonoAndroid10+MonoTouch10+Xamarin.iOS10\HttpLibrary.Net.dll" />
     </files>
 </package>
