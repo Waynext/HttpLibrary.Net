@@ -218,13 +218,13 @@ namespace HttpLibrary.Requesting
         public Exception Exception
         {
             get;
-            internal set;
+            protected set;
         }
 
         /// <summary>
         /// Indicate if reponse is succeeded.
         /// </summary>
-        public bool IsSucceeded { get; internal set; }
+        public bool IsSucceeded { get; protected set; }
 
         /// <summary>
         /// Repoonse stream.

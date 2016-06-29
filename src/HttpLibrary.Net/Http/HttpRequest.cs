@@ -73,7 +73,7 @@ namespace HttpLibrary.Http
 
         private bool needDisposeWhenReset;
         private StreamCollection requestStreams;
-        internal StreamCollection RequestStreams
+        public StreamCollection RequestStreams
         {
             get
             {
@@ -88,7 +88,7 @@ namespace HttpLibrary.Http
             }
         }
 
-        internal void SetRequestStream(Stream requestStream, string contentType, long contentLength = -1, bool disposeWhenReset = true)
+        public void SetRequestStream(Stream requestStream, string contentType, long contentLength = -1, bool disposeWhenReset = true)
         {
             RequestStreams = new StreamCollection(new Stream[] { requestStream });
             RequestStreams.Seek(0);
@@ -103,7 +103,7 @@ namespace HttpLibrary.Http
             //OriginalRequest.AllowWriteStreamBuffering = false;
         }
 
-        internal void SetRequestStream(StreamCollection requestStreams, string contentType, long contentLength = -1, bool disposeWhenReset = true)
+        public void SetRequestStream(StreamCollection requestStreams, string contentType, long contentLength = -1, bool disposeWhenReset = true)
         {
             RequestStreams = requestStreams;
 
@@ -300,11 +300,19 @@ namespace HttpLibrary.Http
             internal set;
         }
 
+        public string StatusDescription
+        {
+            get;
+            internal set;
+        }
+
+
         internal HttpResponse(HttpWebResponse response, int responseId)
         {
             ResponseId = responseId;
             OriginalResponse = response;
             StatusCode = response.StatusCode;
+            StatusDescription = response.StatusDescription;
 
             CreateResponseStream();
         }

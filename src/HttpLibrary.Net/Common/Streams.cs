@@ -10,7 +10,7 @@ using System.IO;
 
 namespace HttpLibrary.Common
 {
-    class StreamCollection : IDisposable
+    public class StreamCollection : IDisposable
     {
         public StreamCollection(Stream stream)
         {
