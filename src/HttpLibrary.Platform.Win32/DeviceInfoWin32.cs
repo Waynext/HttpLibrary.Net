@@ -15,8 +15,19 @@ namespace HttpLibrary.Platform.Win32
         {
             get
             {
-                var assemblyName = Assembly.GetEntryAssembly().GetName();
-                return string.IsNullOrEmpty(appName) ? (string.Format("{0}/{1}", assemblyName.Name, assemblyName.Version.ToString())) : appName;
+                AssemblyName assemblyName = null;
+                var assembly = Assembly.GetEntryAssembly();
+                if(assembly != null)
+                {
+                    assemblyName = assembly.GetName();
+                }
+                
+                if(assemblyName != null)
+                    return string.IsNullOrEmpty(appName) ? (string.Format("{0}/{1}", assemblyName.Name, assemblyName.Version.ToString())) : appName;
+                else
+                {
+                    return string.IsNullOrEmpty(appName) ? "App" : appName;
+                }
             }
 
             set
