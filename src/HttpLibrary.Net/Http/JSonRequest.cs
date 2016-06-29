@@ -13,6 +13,7 @@ using System.IO;
 using HttpLibrary.Common;
 using System.Net;
 using System.Diagnostics;
+using HttpLibrary.Interop;
 
 namespace HttpLibrary.Http
 {
@@ -21,8 +22,8 @@ namespace HttpLibrary.Http
     /// </summary>
     public class JSonRequest : HttpRequest
     {
-        public JSonRequest(string uri, JObject jObject, string method = HttpConst.HttpMethod_Post)
-            : base(uri, method)
+        public JSonRequest(IHttpLibraryPlatform platform, string uri, JObject jObject, string method = HttpConst.HttpMethod_Post)
+            : base(platform, uri, method)
         {
 #if DEBUG
             Object = jObject;

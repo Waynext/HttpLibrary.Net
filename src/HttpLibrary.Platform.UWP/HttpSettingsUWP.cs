@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Diagnostics;
 
-namespace HttpLibrary.Platform.Windows
+namespace HttpLibrary.Platform.UWP
 {
-    class HttpSettingsWindows : IHttpSettings
+    class HttpSettingsUWP : IHttpSettings
     {
         public void SetHttpHeader(HttpWebRequest request, HttpRequestHeader header, string headerValue)
         {
@@ -22,9 +22,6 @@ namespace HttpLibrary.Platform.Windows
                         break;
                     case HttpRequestHeader.ContentType:
                         request.ContentType = headerValue;
-                        break;
-                    case HttpRequestHeader.UserAgent:
-                        Debug.WriteLine("Set User-Agent is not supported");
                         break;
                     default:
                         request.Headers[header] = headerValue;

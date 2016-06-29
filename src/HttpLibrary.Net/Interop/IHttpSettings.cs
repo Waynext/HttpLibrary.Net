@@ -17,10 +17,13 @@ namespace HttpLibrary.Interop
     public interface IHttpSettings
     {
         /// <summary>
-        /// Set request user agent.
+        /// Set http request header
         /// </summary>
-        /// <param name="request"></param>
-        /// <param name="userAgent"></param>
-        void SetRequestUserAgent(HttpWebRequest request, string userAgent);
+        /// <param name="request">Http request</param>
+        /// <param name="headerName">Header name</param>
+        /// <param name="headerValue">Value</param>
+        void SetHttpHeader(HttpWebRequest request, string headerName, string headerValue);
+        void SetHttpHeader(HttpWebRequest request, HttpRequestHeader header, string headerValue);
+
     }
 }

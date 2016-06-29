@@ -12,6 +12,7 @@ using System.IO;
 using HttpLibrary.Common;
 using System.Threading;
 using System.Diagnostics;
+using HttpLibrary.Interop;
 
 namespace HttpLibrary.Http
 {
@@ -97,8 +98,8 @@ namespace HttpLibrary.Http
             //LogHelper.OnlineLogger.DebugFormat("Set ContentLength={0},ContentType={1}", requestStream.Length, contentType);
             Debug.WriteLine("Set ContentLength={0},ContentType={1}", requestStream.Length, contentType);
 
-            OriginalRequest.Headers[HttpRequestHeader.ContentLength] = (contentLength == -1 ? RequestStreams.Length : contentLength).ToString();
-            OriginalRequest.ContentType = contentType;
+            httpLibraryPlatform.HttpSettings.SetHttpHeader(OriginalRequest, HttpRequestHeader.ContentLength, (contentLength == -1 ? RequestStreams.Length : contentLength).ToString());
+            httpLibraryPlatform.HttpSettings.SetHttpHeader(OriginalRequest, HttpRequestHeader.ContentType, contentType);
             
             //OriginalRequest.AllowWriteStreamBuffering = false;
         }
@@ -113,12 +114,13 @@ namespace HttpLibrary.Http
 
             //LogHelper.OnlineLogger.DebugFormat("Set ContentLength={0},ContentType={1}", requestStreams.Length, contentType);
             Debug.WriteLine("Set ContentLength={0},ContentType={1}", requestStreams.Length, contentType);
-            OriginalRequest.Headers[HttpRequestHeader.ContentLength] = (contentLength == -1 ? RequestStreams.Length : contentLength).ToString();
-            OriginalRequest.ContentType = contentType;
+            httpLibraryPlatform.HttpSettings.SetHttpHeader(OriginalRequest, HttpRequestHeader.ContentLength, (contentLength == -1 ? RequestStreams.Length : contentLength).ToString());
+            httpLibraryPlatform.HttpSettings.SetHttpHeader(OriginalRequest, HttpRequestHeader.ContentType, contentType);
 
             //OriginalRequest.AllowWriteStreamBuffering = false;
         }
 
+        private IHttpLibraryPlatform httpLibraryPlatform;
         internal HttpResponse Response
         {
             get;
@@ -161,10 +163,12 @@ namespace HttpLibrary.Http
             set;
         }
 
-        public HttpRequest(string uri, string method = HttpConst.HttpMethod_Post,
+        public HttpRequest(IHttpLibraryPlatform platform, string uri, string method = HttpConst.HttpMethod_Post,
                            bool allowReadBuffering = true, bool allowWriteBuffering = true,
                            int bufferSize = 64 * 1024)
         {
+            httpLibraryPlatform = platform;
+
             RequestId = r.Next(1000000);
 
             try

@@ -24,12 +24,14 @@ namespace HttpLibraryUWPTest
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public static HttpLibraryPlatformUWP HttpLibPlatform = new HttpLibraryPlatformUWP();
+
         RequestQueue reqQueue;
         public MainPage()
         {
             this.InitializeComponent();
 
-            reqQueue = new RequestQueue(new HttpLibraryPlatformUWP());
+            reqQueue = new RequestQueue(HttpLibPlatform);
 
         }
 

@@ -27,11 +27,13 @@ namespace HttpLibrary.Platform.UWP
             }
         }
 
+        private HttpSettingsUWP httpSettings = new HttpSettingsUWP();
+
         public IHttpSettings HttpSettings
         {
             get
             {
-                return null;
+                return httpSettings;
             }
         }
     }

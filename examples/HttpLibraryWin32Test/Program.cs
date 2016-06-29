@@ -1,4 +1,5 @@
-﻿using HttpLibrary.Platform.Win32;
+﻿using HttpLibrary.Interop;
+using HttpLibrary.Platform.Win32;
 using HttpLibrary.Requesting;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,11 @@ namespace HttpLibraryWin32Test
 {
     class Program
     {
+        public static IHttpLibraryPlatform HttpLibraryPlatform = new HttpLibraryPlatformWin32();
         static RequestQueue reqQueue;
         static void Main(string[] args)
         {
-            reqQueue = new RequestQueue(new HttpLibraryPlatformWin32());
+            reqQueue = new RequestQueue(HttpLibraryPlatform);
 
             var task = GetWebResource(args[0]);
 

@@ -178,7 +178,9 @@ namespace HttpLibrary.Http
                         additinalCookie = pairHeader.Value;
                         continue;
                     }
-                    originalReq.Headers[pairHeader.Key] = pairHeader.Value;
+
+                    httpLibPlatform.HttpSettings.SetHttpHeader(originalReq, pairHeader.Key, pairHeader.Value);
+                    //originalReq.Headers[pairHeader.Key] = pairHeader.Value;
                 }
             }
             SetAuthentication(originalReq);
@@ -869,12 +871,10 @@ namespace HttpLibrary.Http
                 Debug.WriteLine("UserAgent: " + userAgent);
             }
 
-            if (httpLibPlatform.HttpSettings == null)
+            if (httpLibPlatform.HttpSettings != null)
             {
-                httpRequest.Headers[HttpRequestHeader.UserAgent] = userAgent;
+                httpLibPlatform.HttpSettings.SetHttpHeader(httpRequest, HttpRequestHeader.UserAgent, userAgent);
             }
-            else
-                httpLibPlatform.HttpSettings.SetRequestUserAgent(httpRequest, userAgent);
         }
 
         public static string LogRequetId(int reqId)

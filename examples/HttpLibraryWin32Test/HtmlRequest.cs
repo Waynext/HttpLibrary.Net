@@ -12,7 +12,7 @@ namespace HttpLibraryWin32Test
 {
     class HtmlRequest : Request
     {
-        public HtmlRequest(string uri) : base(RequestPriority.Normal)
+        public HtmlRequest(string uri) : base(Program.HttpLibraryPlatform, RequestPriority.Normal)
         {
             Uri = uri;
             
@@ -20,7 +20,7 @@ namespace HttpLibraryWin32Test
 
         protected override void Encode()
         {
-            HttpRequest = new HttpRequest(Uri, HttpConst.HttpMethod_Get);
+            HttpRequest = new HttpRequest(HttpLibPlatform, Uri, HttpConst.HttpMethod_Get);
             
         }
         protected override void CreateResponse()

@@ -1,4 +1,5 @@
-﻿using HttpLibrary.Requesting;
+﻿using HttpLibrary.Interop;
+using HttpLibrary.Requesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace HttpLibraryXamarinTest
 {
     public partial class WebPage : ContentPage
     {
+        public static IHttpLibraryPlatform HttpLibraryPlatform;
+
         RequestQueue queue;
         public WebPage()
         {
@@ -18,8 +21,8 @@ namespace HttpLibraryXamarinTest
 
             queryButton.Clicked += OnClickQuery;
 
-            var settings = DependencyService.Get<IHttpLibrarySettings>();
-            queue = new RequestQueue(settings.HttpLibraryPlaform);
+            HttpLibraryPlatform = DependencyService.Get<IHttpLibrarySettings>().HttpLibraryPlaform;
+            queue = new RequestQueue(HttpLibraryPlatform);
 
         }
 

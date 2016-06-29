@@ -12,6 +12,7 @@ using System.Threading;
 using HttpLibrary.Http;
 using HttpLibrary.Common;
 using System.IO;
+using HttpLibrary.Interop;
 
 namespace HttpLibrary.Requesting
 {
@@ -69,12 +70,18 @@ namespace HttpLibrary.Requesting
     /// </summary>
     public abstract class Request
     {
+        protected IHttpLibraryPlatform HttpLibPlatform
+        {
+            get;
+            private set;
+        }
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="priority">Request priority.</param>
-        public Request(RequestPriority priority)
+        public Request(IHttpLibraryPlatform httpLibPlatform, RequestPriority priority)
         {
+            HttpLibPlatform = httpLibPlatform;
             Id = GenerateId();
             Priority = priority;
         }
@@ -167,7 +174,7 @@ namespace HttpLibrary.Requesting
         /// </summary>
         protected virtual void Encode()
         {
-            HttpRequest = new HttpRequest(Uri);
+            HttpRequest = new HttpRequest(HttpLibPlatform, Uri);
             if (!requestHeaders.IsNullOrEmpty())
             {
                 HttpRequest.Headers = requestHeaders;

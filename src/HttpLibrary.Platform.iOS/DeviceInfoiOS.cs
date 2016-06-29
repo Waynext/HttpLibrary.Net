@@ -12,7 +12,6 @@ namespace HttpLibrary.Platform.iOS
 {
     class DeviceInfoiOS : IDeviceInfo
     {
-        private string appName = null;
         public string Application
         {
             get
