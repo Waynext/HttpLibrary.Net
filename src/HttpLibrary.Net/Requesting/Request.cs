@@ -307,7 +307,7 @@ namespace HttpLibrary.Requesting
             {
                 if (HttpResponse.Exception != null)
                 {
-                    Exception = HttpResponse.Exception;
+                    SetException(HttpResponse.Exception);
                 }
                 
                 Decode();

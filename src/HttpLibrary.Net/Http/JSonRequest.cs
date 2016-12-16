@@ -73,7 +73,7 @@ namespace HttpLibrary.Http
         /// <summary>
         /// Json body
         /// </summary>
-        public JObject Object
+        public Object Object
         {
             get;
             private set;
@@ -131,7 +131,7 @@ namespace HttpLibrary.Http
             string sResult = ct.Encoding.GetString(buffer, 0, contentLen);
             DiagnoseHelper.CheckString(sResult, "Login response content is empty");
 
-            this.Object = JsonConvert.DeserializeObject<JObject>(sResult);
+            this.Object = JsonConvert.DeserializeObject(sResult);
             
         }
     }

@@ -578,6 +578,7 @@ namespace HttpLibrary.Http
             HttpWebResponse httpResponse = null;
 
             bool isRequiringProxyAuth = false;
+            WebException tempEx = null;
             try
             {
                 try
@@ -601,6 +602,10 @@ namespace HttpLibrary.Http
                         {
                             isRequiringProxyAuth = true;
                         }
+                        else
+                        {
+                            tempEx = ex;
+                        }
                     }
                     else
                     {
@@ -613,6 +618,7 @@ namespace HttpLibrary.Http
                 if (!isRequiringProxyAuth)
                 {
                     req.Response = CreateResponse(httpResponse, req.RequestId);
+                    req.Response.Exception = tempEx;
                     req.ReportReady(ReadyState.Succeeded);
 
                     GetCookies(httpResponse);
