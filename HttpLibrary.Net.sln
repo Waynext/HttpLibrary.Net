@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpLibraryUWPTest", "examp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpLibrary.Platform.UWP", "src\HttpLibrary.Platform.UWP\HttpLibrary.Platform.UWP.csproj", "{23928727-EE58-4E1E-9EFE-66EF2E1B804D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpLibraryXamarinTest.Droid", "examples\HttpLibraryXamarinTest\HttpLibraryXamarinTest.Droid\HttpLibraryXamarinTest.Droid.csproj", "{01DC4615-9C53-4576-81BC-75FA4F969388}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpLibraryXamarinTest.Droid", "examples\HttpLibraryXamarinTest\HLibXTest.Droid\HttpLibraryXamarinTest.Droid.csproj", "{01DC4615-9C53-4576-81BC-75FA4F969388}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpLibraryXamarinTest.iOS", "examples\HttpLibraryXamarinTest\HttpLibraryXamarinTest.iOS\HttpLibraryXamarinTest.iOS.csproj", "{538B2FC6-12BA-4744-B5B6-6511654FB711}"
 EndProject
