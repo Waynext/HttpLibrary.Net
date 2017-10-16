@@ -2,13 +2,13 @@
 HttpLibrary.Net PCL is an open source, minimal library to allow .NET and Mono applications to access web resouce by http request and response.
 By inheriting Request and Response classes, function can be implemented in unified way. Multithread access is supported. Request can be classify by priority.
 
-##Usage
-###Create RequestQueue
+## Usage
+### Create RequestQueue
 
 	var libHelper = DependencyService.Get<IHttpLibraryHelper>(DependencyFetchTarget.GlobalInstance);
 	RequestQueue reqQueue = new RequestQueue(libHelper.Platform);
 
-###Send request
+### Send request
 
 	var req = new ProjectRomeListDeviceRequest();
 
@@ -20,8 +20,9 @@ By inheriting Request and Response classes, function can be implemented in unifi
 		return response.Devices.Where(d => d.Status.Equals("online", StringComparison.OrdinalIgnoreCase));
 	}	
 		
-###Create Request
-
+### Create Request
+	
+	//Let's take MSGraph ProjectRome RESTAPI as an example
 	class MSGraphSettings
     {
         private static MSGraphSettings _instance = new MSGraphSettings();
@@ -204,7 +205,7 @@ By inheriting Request and Response classes, function can be implemented in unifi
         }
     }
 	
-###Create httpLibrary helper in UWP, Android or iOS project
+### Create httpLibrary helper in UWP, Android or iOS project
 
 	[assembly: Dependency(typeof(NeroShareDemo.UWP.HttpLibraryHelperUWP))]
 	namespace NeroShareDemo.UWP
