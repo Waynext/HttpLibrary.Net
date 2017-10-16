@@ -4,7 +4,7 @@ By inheriting Request and Response classes, function can be implemented in unifi
 
 ## Usage
 ### Create RequestQueue
-	Install HttpLibrary.Net.Core-PCL by Nuget
+Install HttpLibrary.Net.Core-PCL by Nuget
 	
 	var libHelper = DependencyService.Get<IHttpLibraryHelper>(DependencyFetchTarget.GlobalInstance);
 	RequestQueue reqQueue = new RequestQueue(libHelper.Platform);
@@ -207,7 +207,7 @@ By inheriting Request and Response classes, function can be implemented in unifi
     }
 	
 ### Create httpLibrary helper in UWP, Android or iOS project
-	Install HttpLibrary.Net-PCL by Nuget
+Install HttpLibrary.Net-PCL by Nuget
 	
 	[assembly: Dependency(typeof(NeroShareDemo.UWP.HttpLibraryHelperUWP))]
 	namespace NeroShareDemo.UWP
