@@ -2,13 +2,25 @@
 HttpLibrary.Net PCL is an open source, minimal library to allow .NET and Mono applications to access web resouce by http request and response.
 By inheriting Request and Response classes, function can be implemented in unified way. Multithread access is supported. Request can be classify by priority.
 
-**Usage**
-**Create RequestQueue**
+##Usage
+###Create RequestQueue
 
 	var libHelper = DependencyService.Get<IHttpLibraryHelper>(DependencyFetchTarget.GlobalInstance);
 	RequestQueue reqQueue = new RequestQueue(libHelper.Platform);
 
-**Create Request**
+###Send request
+
+	var req = new ProjectRomeListDeviceRequest();
+
+	await reqQueue.SendRequestAsync(req);
+
+	var response = req.Response as ProjectRomeListDeviceResponse;
+	if(response != null && response.IsSucceeded)
+	{
+		return response.Devices.Where(d => d.Status.Equals("online", StringComparison.OrdinalIgnoreCase));
+	}	
+		
+###Create Request
 
 	class MSGraphSettings
     {
@@ -192,7 +204,7 @@ By inheriting Request and Response classes, function can be implemented in unifi
         }
     }
 	
-**Create httpLibrary helper in UWP, Android or iOS project**
+###Create httpLibrary helper in UWP, Android or iOS project
 
 	[assembly: Dependency(typeof(NeroShareDemo.UWP.HttpLibraryHelperUWP))]
 	namespace NeroShareDemo.UWP
@@ -202,17 +214,5 @@ By inheriting Request and Response classes, function can be implemented in unifi
 			private static IHttpLibraryPlatform _platform = new HttpLibraryPlatformUWP();
 			public IHttpLibraryPlatform Platform => _platform;
 		}
-	}
-
-**Send request**
-
-	var req = new ProjectRomeListDeviceRequest();
-
-	await _queue.SendRequestAsync(req);
-
-	var response = req.Response as ProjectRomeListDeviceResponse;
-	if(response != null && response.IsSucceeded)
-	{
-		return response.Devices.Where(d => d.Status.Equals("online", StringComparison.OrdinalIgnoreCase));
 	}
 
