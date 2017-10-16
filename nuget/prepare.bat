@@ -1,5 +1,7 @@
 mkdir HttpLibrary.Net
 copy /y ..\src\HttpLibrary.Net\bin\Release\HttpLibrary.Net.dll HttpLibrary.Net
+copy /y ..\src\HttpLibrary.Net\bin\Release\HttpLibrary.Net.xml HttpLibrary.Net
+
 type nul >HttpLibrary.Net\_._
 
 

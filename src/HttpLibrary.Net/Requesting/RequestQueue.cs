@@ -20,7 +20,7 @@ namespace HttpLibrary.Requesting
     /// <summary>
     /// RequestQueue is core of HttpLibrary. It sends requests in the request queue.
     /// Request in request queue is prioritized, which means request with high priority will be sent first.
-    /// RequestQueue is multithread safe, you can add requests from diffent threads.
+    /// RequestQueue is multithread safe, you can add requests from diffent threads. 
     /// </summary>
     public class RequestQueue : IDisposable
     {

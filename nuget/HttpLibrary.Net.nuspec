@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>HttpLibrary.Net-PCL</id>
-        <version>0.1.0</version>
+        <version>0.1.1</version>
         <title>HttpLibrary.Net PCL</title>
         <authors>Wayne Gu</authors>
         <owners>Wayne Gu</owners>
@@ -17,7 +17,7 @@
         <tags>network http web request response ios android windows uwp xamarin monotouch monodroid win32 windowsphone wp8.1</tags>
         <dependencies>
             <group>
-		        <dependency id="HttpLibrary.Net.Core-PCL" version="0.1.0"/>
+		        <dependency id="HttpLibrary.Net.Core-PCL" version="0.1.1"/>
             </group>
         </dependencies>
     </metadata>

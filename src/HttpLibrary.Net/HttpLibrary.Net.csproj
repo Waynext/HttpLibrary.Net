@@ -33,6 +33,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\HttpLibrary.Net.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Common\Definitions.cs" />
